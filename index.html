@@ -1,0 +1,643 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Công trường Kiến trúc sư góc – Toán 7</title>
+<meta name="description" content="Học liệu tương tác Toán 7 – Bài 8: Góc ở vị trí đặc biệt. Tia phân giác của một góc. GV Ngô Thị Phương, THCS Võ Thị Sáu, Hải Phòng.">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;600;700;800;900&family=Lexend:wght@600;700;800&family=JetBrains+Mono:wght@500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#fbf4ea;--panel:#fff;--ink:#1e2b44;--dim:#66708a;--line:#ead8c0;--acc:#dd560c;--accdk:#9f3b06;--acc2:#1d4ed8;--onacc:#fff;--gold:#d99a00;--gold2:#8a5d00;--goldbg:#fff4d6;--soft:#f6eadb;--note:#fffaf3;--inbg:#fff;
+--okbg:#e6f6ea;--okc:#166534;--warnbg:#fff0dc;--warnc:#9a4306;--infobg:#e8efff;--infoc:#1e3a8a;--shadow:0 3px 14px rgba(30,43,68,.08);--certbg:linear-gradient(135deg,#fffaf0,#e9f0ff);--certink:#1e2b44;--certacc:#dd560c}
+body{background:linear-gradient(rgba(221,86,12,.05) 1px,transparent 1px) 0 0/28px 28px,linear-gradient(90deg,rgba(221,86,12,.05) 1px,transparent 1px) 0 0/28px 28px,var(--bg)}
+body:before{content:"";display:block;height:10px;background:repeating-linear-gradient(-45deg,#f5b400 0 16px,#1e2b44 16px 32px)}
+
+*{box-sizing:border-box}[hidden]{display:none!important}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.55 'Be Vietnam Pro',system-ui,sans-serif}
+.app{max-width:1140px;margin:0 auto;padding:18px 16px 26px}
+.top{display:flex;justify-content:space-between;align-items:center;gap:14px;flex-wrap:wrap}
+.brand{display:flex;gap:14px;align-items:center}
+.logo{flex:0 0 66px;height:66px;border:2px solid var(--acc);border-radius:12px;display:flex;flex-direction:column;justify-content:center;padding:4px 9px;color:var(--acc);background:var(--panel)}
+.logo small{font:700 11px 'JetBrains Mono',monospace}.logo b{font:800 21px/1.1 'Lexend',sans-serif;white-space:nowrap}
+h1{margin:0;font:800 clamp(26px,5vw,46px)/1.08 'Lexend',sans-serif;letter-spacing:-.015em}
+.sub{font:600 12px 'JetBrains Mono',monospace;letter-spacing:.08em;color:var(--dim);margin-top:5px;text-transform:uppercase}
+.hud{display:flex;gap:8px}
+.hbtn{border:1px solid var(--line);background:var(--panel);color:var(--ink);border-radius:999px;padding:8px 14px;font:600 14px 'JetBrains Mono',monospace;cursor:pointer}
+.hbtn b{color:var(--gold);font-size:17px}
+.rooms{display:flex;flex-wrap:wrap;gap:8px;margin:16px 0 22px}
+.rooms button{border:1px solid var(--line);background:var(--panel);color:var(--ink);border-radius:999px;padding:8px 14px;font:700 14px 'Be Vietnam Pro',sans-serif;cursor:pointer;display:flex;gap:7px;align-items:center}
+.rooms button .n{font:600 12px 'JetBrains Mono',monospace;color:var(--dim)}
+.rooms button.on{background:var(--ink);color:var(--bg);border-color:var(--ink)}.rooms button.on .n{color:inherit;opacity:.7}
+.chip{display:inline-block;font:700 12px 'JetBrains Mono',monospace;letter-spacing:.12em;text-transform:uppercase;color:var(--acc);border:1px solid var(--acc);border-radius:999px;padding:3px 11px;background:var(--panel)}
+.panel{background:var(--panel);border:1px solid var(--line);border-radius:18px;padding:18px;box-shadow:var(--shadow)}
+.hero{display:grid;grid-template-columns:1.1fr 1fr;gap:24px;align-items:center}
+.hero h2{font:800 clamp(26px,4.3vw,42px)/1.15 'Lexend',sans-serif;margin:12px 0;letter-spacing:-.01em}
+.hero p{color:var(--dim)}
+.quote{border-left:4px solid var(--gold);padding:2px 12px;color:var(--gold2);font-size:18px;margin:12px 0}
+.hub{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:14px;margin-top:24px}
+.room{display:flex;gap:14px;text-align:left;cursor:pointer;color:var(--ink);font:inherit;transition:transform .15s,border-color .15s}
+.room:hover{border-color:var(--acc);transform:translateY(-2px)}
+.room .t,.tile{flex:0 0 64px;height:64px;border:2px solid var(--acc);border-radius:12px;display:flex;flex-direction:column;justify-content:center;padding:4px 8px;color:var(--acc)}
+.room .t small{font:700 11px 'JetBrains Mono',monospace}.room .t b{font:800 18px/1.1 'Lexend',sans-serif;white-space:nowrap}
+.room h3{margin:0;font:700 20px/1.25 'Lexend',sans-serif}.room p{margin:3px 0 5px;color:var(--dim);font-size:14px}
+.room .st{font:700 13px 'JetBrains Mono',monospace;color:var(--gold)}
+.rhead{display:flex;flex-wrap:wrap;gap:12px;align-items:center;margin-bottom:14px}
+.coach{display:flex;gap:10px;align-items:center;flex:1 1 380px}
+.coach .av{font-size:36px;line-height:1;animation:bob 2.6s ease-in-out infinite}
+@keyframes bob{50%{transform:translateY(-5px)}}
+.coach .say{background:var(--panel);border:1px solid var(--line);border-radius:4px 16px 16px 16px;padding:8px 13px;font-size:15px;flex:1}
+.act{margin-bottom:16px}
+.act h3{margin:0 0 4px;font:700 21px/1.3 'Lexend',sans-serif;display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+.bpill{font:700 12px 'JetBrains Mono',monospace;border:1px dashed var(--line);color:var(--dim);border-radius:999px;padding:2px 9px}
+.bpill.got{border:1px solid var(--gold);color:var(--gold2);background:var(--goldbg)}
+.dim{color:var(--dim)}.small{font-size:14px}
+.tnote{border:1px dashed var(--line);border-radius:14px;padding:10px 14px;margin-top:14px;background:var(--note);font-size:15px}
+.tnote summary{cursor:pointer;font-weight:800;color:var(--acc)}
+.grid2{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:18px;align-items:start}
+.row{display:flex;gap:10px;flex-wrap:wrap;align-items:center;margin-top:12px}
+.center{justify-content:center}
+.btn{border:none;border-radius:13px;padding:11px 18px;font:800 16px 'Be Vietnam Pro',sans-serif;cursor:pointer;transition:transform .1s}
+.btn:active{transform:scale(.96)}
+.btn.main{background:var(--acc);color:var(--onacc);box-shadow:0 4px 0 var(--accdk)}
+.btn.ghost{background:var(--soft);color:var(--ink)}
+.btn.line{background:transparent;border:2px solid var(--line);color:var(--ink)}
+.btn[disabled]{opacity:.45;cursor:default}
+.msg{border-radius:13px;padding:10px 14px;margin-top:12px;font-size:15.5px}
+.msg.ok{background:var(--okbg);color:var(--okc)}.msg.warn{background:var(--warnbg);color:var(--warnc)}.msg.info{background:var(--infobg);color:var(--infoc)}
+.prog{height:9px;background:var(--soft);border-radius:99px;overflow:hidden;margin:10px 0 2px}
+.prog i{display:block;height:100%;background:linear-gradient(90deg,var(--acc),var(--acc2));width:0;transition:width .35s}
+.fx{display:inline-flex;align-items:center;gap:2px;vertical-align:middle}
+.fr{display:inline-flex;flex-direction:column;text-align:center;line-height:1.05;vertical-align:middle}
+.fr b{font-weight:inherit;padding:0 3px}.fr b:first-child{border-bottom:.09em solid currentColor}
+.numin{width:84px;font:800 20px 'Be Vietnam Pro',sans-serif;text-align:center;padding:8px;border:2px solid var(--line);border-radius:12px;background:var(--inbg);color:var(--ink)}
+.opts{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:10px;margin-top:10px}
+.opt{border:2px solid var(--line);background:var(--panel);color:var(--ink);border-radius:14px;padding:12px 14px;font:700 17px 'Be Vietnam Pro',sans-serif;cursor:pointer;text-align:left}
+.opt:hover{border-color:var(--acc)}
+.opt.right{border-color:#16a34a;background:var(--okbg);color:var(--okc)}.opt.wrong{border-color:#dc2626;background:var(--warnbg);color:var(--warnc)}
+.big{font:800 34px 'Be Vietnam Pro',sans-serif;color:var(--acc)}
+svg{display:block;width:100%;height:auto;user-select:none;-webkit-user-select:none}
+.shake{animation:sh .35s}@keyframes sh{25%{transform:translateX(-7px)}75%{transform:translateX(7px)}}
+.pop{animation:pp .5s}@keyframes pp{40%{transform:scale(1.15)}}
+/* quiz */
+.quiz{max-width:820px;margin:0 auto}
+.qtop{display:flex;justify-content:space-between;font:700 14px 'JetBrains Mono',monospace;color:var(--dim)}
+.qbar{height:8px;background:var(--soft);border-radius:99px;overflow:hidden;margin:8px 0 14px}.qbar i{display:block;height:100%;background:var(--gold);transition:width 1s linear}
+.qq{font:700 22px/1.4 'Lexend',sans-serif;margin:6px 0 10px}
+.cert{text-align:center;border:4px double var(--gold);border-radius:22px;padding:26px 18px;background:var(--certbg);color:var(--certink)}
+.cert .m{font:700 13px 'JetBrains Mono',monospace;letter-spacing:.2em}
+.cert h2{font:800 30px 'Lexend',sans-serif;margin:10px 0 2px;letter-spacing:.04em}
+.cert .ct{font:800 22px 'Lexend',sans-serif;color:var(--certacc)}
+.cert .who{font:900 30px 'Be Vietnam Pro',sans-serif;border-bottom:2px dashed var(--gold);display:inline-block;min-width:240px;padding:0 12px;margin:8px 0}
+.cert input{font:700 17px 'Be Vietnam Pro',sans-serif;padding:9px 12px;border:2px solid var(--line);border-radius:12px;max-width:100%;background:#fff;color:#1b2440}
+table.info{width:100%;border-collapse:collapse;font-size:15px}
+table.info th{text-align:left;vertical-align:top;padding:9px 12px 9px 0;border-bottom:1px solid var(--line);width:28%;color:var(--acc)}
+table.info td{padding:9px 0;border-bottom:1px solid var(--line)}
+footer{text-align:center;color:var(--dim);font-size:13px;padding:6px 16px 30px}
+#cf{position:fixed;inset:0;pointer-events:none;z-index:9998}
+#toast{position:fixed;left:50%;top:18px;transform:translate(-50%,-200%);background:var(--ink);color:var(--bg);padding:11px 20px;border-radius:999px;font-weight:800;z-index:9999;transition:transform .35s;box-shadow:0 10px 30px rgba(0,0,0,.25);max-width:92vw;text-align:center}
+#toast.show{transform:translate(-50%,0)}#toast:empty{display:none}
+.hscroll{overflow-x:auto;-webkit-overflow-scrolling:touch}.swipe{display:none;text-align:center;font-size:12.5px;color:var(--dim)}
+@media(max-width:820px){.hero,.grid2{grid-template-columns:1fr}}
+@media(max-width:600px){.app{padding:14px 12px}.rooms button{padding:7px 11px;font-size:13px}.panel{padding:14px}.logo{flex-basis:56px;height:56px}.swipe{display:block}.hscroll svg{min-width:640px}}
+@media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+
+.qbig{font:800 21px/1.4 'Lexend',sans-serif;margin:10px 0}
+.yn{display:flex;gap:12px;justify-content:center;flex-wrap:wrap;margin-top:10px}
+.yn .opt{min-width:200px;text-align:center}
+.ansrow{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin-top:10px;font:800 20px 'Be Vietnam Pro',sans-serif}
+.sec{cursor:pointer;transition:fill-opacity .15s}.sec:hover{fill-opacity:.4}
+.stepcards{display:grid;gap:10px;margin-top:10px}
+.sc{border:2px solid var(--line);background:var(--panel);border-radius:14px;padding:12px 14px;text-align:left;font:600 16px 'Be Vietnam Pro',sans-serif;color:var(--ink);cursor:pointer;display:flex;gap:10px;align-items:center}
+.sc b.n{flex:0 0 30px;height:30px;border-radius:50%;background:var(--soft);display:flex;align-items:center;justify-content:center;font-family:'JetBrains Mono',monospace}
+.sc.done{border-color:#16a34a;background:var(--okbg);cursor:default}.sc.done b.n{background:#16a34a;color:#fff}
+.bp{border-radius:16px;overflow:hidden;border:3px solid #1e3a8a}
+.tools{display:flex;gap:10px;flex-wrap:wrap;align-items:center;margin-top:8px}
+input[type=range]{width:100%;accent-color:var(--acc);height:34px}
+.live{font-size:17px;font-weight:700;margin-top:4px}
+
+</style>
+</head>
+<body>
+<canvas id="cf"></canvas><div id="toast" role="status" aria-live="polite"></div>
+<div class="app">
+<header class="top">
+  <div class="brand"><div class="logo"><small>8</small><b>∠</b></div><div><h1>Công trường Kiến trúc sư góc</h1><div class="sub">Toán 7 · Bài 8 · Góc ở vị trí đặc biệt. Tia phân giác · Học liệu tương tác và mô phỏng</div></div></div>
+  <div class="hud"><button class="hbtn" id="snd" aria-label="Bật/tắt âm thanh">🔊</button><div class="hbtn">Huy hiệu <b id="bc">0</b>/<span id="bt">0</span></div></div>
+</header>
+<nav class="rooms" id="nav" aria-label="Các phòng học"></nav>
+
+<section class="view" id="v-hub">
+  <div class="hero">
+    <div><span class="chip">Phòng chờ</span><h2>Mở chiếc kéo ra: hai góc đối diện nhau luôn bằng nhau. Vì sao vậy?</h2>
+<div class="quote">Gợi ý: mỗi góc đều cộng với cùng một góc nữa để được 180°.</div>
+<p>Kiến trúc sư Góc mời em vào công trường: nhận diện góc, mở barie, điều khiển ngã tư, chia bánh thật công bằng và hoàn thành bản thiết kế. Hoàn thành nhiệm vụ để nhận huy hiệu và giấy chứng nhận Kiến trúc sư góc.</p>
+</div>
+    <div class="panel" style="text-align:center">
+<svg id="heroSvg" viewBox="0 0 500 300" aria-label="Chiếc kéo mở ra đóng vào, hai góc đối đỉnh luôn bằng nhau"></svg>
+<div id="heroCap" style="font:800 20px 'Lexend',sans-serif;min-height:30px"></div>
+</div>
+  </div>
+  <div class="hub" id="hubRooms"></div>
+</section>
+
+<!-- R1 KỀ BÙ -->
+<section class="view" id="v-r1" hidden>
+  <div class="grid2">
+    <div class="panel act">
+      <h3>Nhận diện cặp góc <span class="bpill" data-badge="adj"></span></h3>
+      <div class="dim">Hai góc được tô màu là hai góc gì? Đúng 5/6 hình để nhận huy hiệu.</div>
+      <div class="prog"><i id="ad-p"></i></div><div class="dim small" id="ad-c"></div>
+      <svg id="ad-svg" viewBox="0 0 440 290" aria-label="Hình vẽ hai góc"></svg>
+      <div class="opts" id="ad-o"><button class="opt" data-k="0">Hai góc kề bù</button><button class="opt" data-k="1">Hai góc kề nhau (không bù)</button><button class="opt" data-k="2">Không kề nhau</button></div>
+      <div id="ad-f"></div><div class="row"><button class="btn ghost" id="ad-nx">Hình tiếp ➜</button></div>
+    </div>
+    <div class="panel act">
+      <h3>Mở barie công trường <span class="bpill" data-badge="gate"></span></h3>
+      <div class="dim">Thanh barie Oy và mặt đường xx' tạo thành hai góc kề bù. Tính đúng góc còn lại để mở barie cho xe vào. Đúng ngay 4/5 câu để nhận huy hiệu.</div>
+      <div class="prog"><i id="gt-p"></i></div><div class="dim small" id="gt-c"></div>
+      <svg id="gt-svg" viewBox="0 0 440 270" aria-label="Barie và hai góc kề bù"></svg>
+      <div class="qbig" id="gt-q"></div>
+      <div class="ansrow"><input class="numin" id="gt-in" type="number" inputmode="numeric" aria-label="Số đo góc"> độ <button class="btn main" id="gt-ck">🚧 Mở barie</button></div>
+      <div id="gt-f"></div><div class="row"><button class="btn ghost" id="gt-nx">Câu tiếp ➜</button></div>
+    </div>
+  </div>
+  <details class="tnote"><summary>Gợi ý cho giáo viên</summary>Dùng ở mục 1. Hai góc kề bù. Nhắc lại: hai góc kề nhau là hai góc có chung đỉnh, chung một cạnh và hai cạnh còn lại nằm về hai phía của đường thẳng chứa cạnh chung; hai góc kề bù là hai góc vừa kề nhau vừa bù nhau (hai cạnh còn lại là hai tia đối nhau), tổng bằng 180°. Hình 4 là "bẫy" thường gặp: hai góc chung cạnh nhưng góc này nằm trong góc kia. Barie: cho học sinh dự đoán trước khi tính, liên hệ thanh chắn ở cổng trường, bãi gửi xe.</details>
+</section>
+
+<!-- R2 ĐỐI ĐỈNH -->
+<section class="view" id="v-r2" hidden>
+  <div class="grid2">
+    <div class="panel act">
+      <h3>Có phải hai góc đối đỉnh? <span class="bpill" data-badge="vert"></span></h3>
+      <div class="dim">Hai góc được tô màu có phải hai góc đối đỉnh không? Cẩn thận, có hình trông rất giống! Đúng 5/6 hình để nhận huy hiệu.</div>
+      <div class="prog"><i id="vt-p"></i></div><div class="dim small" id="vt-c"></div>
+      <svg id="vt-svg" viewBox="0 0 440 320" aria-label="Hình vẽ hai góc"></svg>
+      <div class="yn"><button class="opt" data-k="1">✔ Đối đỉnh</button><button class="opt" data-k="0">✘ Không đối đỉnh</button></div>
+      <div id="vt-f"></div><div class="row"><button class="btn ghost" id="vt-nx">Hình tiếp ➜</button></div>
+    </div>
+    <div class="panel act">
+      <h3>Điều khiển ngã tư <span class="bpill" data-badge="cross"></span></h3>
+      <div class="dim">Hai con đường thẳng cắt nhau tại ngã tư O tạo thành 4 góc. Làm theo yêu cầu: chạm vào góc trên hình hoặc tính số đo. Đúng ngay 5/6 lượt để nhận huy hiệu.</div>
+      <div class="prog"><i id="cr-p"></i></div><div class="dim small" id="cr-c"></div>
+      <svg id="cr-svg" viewBox="0 0 440 340" aria-label="Ngã tư và bốn góc"></svg>
+      <div class="qbig" id="cr-q"></div>
+      <div id="cr-nums" class="ansrow"></div>
+      <div id="cr-f"></div><div class="row"><button class="btn ghost" id="cr-nx">Lượt tiếp ➜</button></div>
+    </div>
+  </div>
+  <details class="tnote"><summary>Gợi ý cho giáo viên</summary>Dùng ở mục 2. Hai góc đối đỉnh. Định nghĩa: hai góc đối đỉnh là hai góc mà mỗi cạnh của góc này là tia đối của một cạnh của góc kia. Tính chất: hai góc đối đỉnh thì bằng nhau. Cho học sinh giải thích bằng góc kề bù: ∠1 + ∠2 = 180° và ∠3 + ∠2 = 180° nên ∠1 = ∠3. Phần nhận diện có các hình "trông giống" (hai cạnh lệch khác 180°) để học sinh không chỉ nhìn bằng mắt mà kiểm tra theo định nghĩa.</details>
+</section>
+
+<!-- R3 PHÂN GIÁC -->
+<section class="view" id="v-r3" hidden>
+  <div class="panel act">
+    <h3>Tiệm bánh: chia đôi thật công bằng <span class="bpill" data-badge="pizza"></span></h3>
+    <div class="dim">Miếng bánh hình quạt là góc xOy. Kéo con dao Oz (kéo trực tiếp trên hình hoặc dùng thanh trượt) để Oz là <b>tia phân giác</b>: hai phần bánh bằng nhau. Đúng ngay 4/5 miếng để nhận huy hiệu.</div>
+    <div class="prog"><i id="pz-p"></i></div><div class="dim small" id="pz-c"></div>
+    <div class="qbig" id="pz-q"></div>
+    <svg id="pz-svg" viewBox="0 0 440 290" style="touch-action:none;cursor:grab" aria-label="Miếng bánh hình quạt và tia Oz"></svg>
+    <input type="range" id="pz-r" min="0" max="180" value="10" aria-label="Xoay tia Oz">
+    <div class="live">∠xOz = <b id="pz-a" style="color:#1d4ed8"></b> · ∠zOy = <b id="pz-b" style="color:#dd560c"></b></div>
+    <div class="tools"><label class="small"><input type="checkbox" id="pz-pro"> 📐 Hiện thước đo góc</label></div>
+    <div class="row"><button class="btn main" id="pz-ck">🔪 Cắt bánh</button><button class="btn ghost" id="pz-nx">Miếng tiếp ➜</button></div>
+    <div id="pz-f"></div>
+  </div>
+  <div class="grid2">
+    <div class="panel act">
+      <h3>Vẽ tia phân giác bằng dụng cụ <span class="bpill" data-badge="fold"></span></h3>
+      <div class="dim" id="fd-t"></div>
+      <div class="stepcards" id="fd-cards"></div>
+      <div id="fd-f"></div>
+    </div>
+    <div class="panel act">
+      <h3>Xem gấp giấy</h3>
+      <svg id="fd-svg" viewBox="0 0 400 260" aria-label="Mô phỏng gấp giấy tìm tia phân giác"></svg>
+      <div class="row center"><button class="btn main" id="fd-play">▶ Gấp giấy</button></div>
+      <div class="dim small">Gấp để cạnh Oy trùng cạnh Ox. Nếp gấp chia góc thành hai góc bằng nhau: đó là tia phân giác.</div>
+    </div>
+  </div>
+  <details class="tnote"><summary>Gợi ý cho giáo viên</summary>Dùng ở mục 3. Tia phân giác của một góc. Định nghĩa: tia nằm giữa hai cạnh của góc và tạo với hai cạnh ấy hai góc bằng nhau. Sau khi cắt đúng, mô phỏng "gấp" nửa bánh để học sinh thấy hai phần trùng khít. Phần vẽ bằng dụng cụ: học sinh sắp xếp các bước dùng thước đo góc và các bước gấp giấy theo SGK; nên cho học sinh thực hành gấp giấy thật song song. Bật "Hiện thước đo góc" để luyện đọc số đo.</details>
+</section>
+
+<!-- R4 BẢN THIẾT KẾ -->
+<section class="view" id="v-r4" hidden>
+  <div class="panel act">
+    <h3>Bản thiết kế của kiến trúc sư <span class="bpill" data-badge="plan"></span></h3>
+    <div class="dim">Các bài toán tổng hợp về góc kề bù, góc đối đỉnh và tia phân giác. Có thể bấm 💡 để xem gợi ý. Đúng ngay lần đầu 4/6 bài để nhận huy hiệu.</div>
+    <div class="prog"><i id="pl-p"></i></div><div class="dim small" id="pl-c"></div>
+    <div class="grid2">
+      <div class="bp"><svg id="pl-svg" viewBox="0 0 440 300" aria-label="Bản vẽ"></svg></div>
+      <div><div class="qbig" id="pl-q"></div>
+        <div class="ansrow"><input class="numin" id="pl-in" type="number" inputmode="numeric" aria-label="Đáp số"> độ <button class="btn main" id="pl-ck">✔ Kiểm tra</button><button class="btn line" id="pl-h">💡 Gợi ý</button></div>
+        <div id="pl-f"></div><div class="row"><button class="btn ghost" id="pl-nx">Bài tiếp ➜</button></div></div>
+    </div>
+  </div>
+  <details class="tnote"><summary>Gợi ý cho giáo viên</summary>Dùng ở phần Luyện tập – Vận dụng hoặc giao về nhà. Yêu cầu học sinh trình bày lời giải vào vở (nêu rõ dùng tính chất nào: tổng hai góc kề bù, hai góc đối đỉnh bằng nhau, tia phân giác chia đôi góc), sau đó nhập đáp số để kiểm tra. Gợi ý chỉ nêu hướng làm, không cho đáp số.</details>
+</section>
+
+
+<section class="view" id="v-r5" hidden>
+  <div class="quiz" id="quiz"></div>
+  <details class="tnote" style="max-width:820px;margin:14px auto 0"><summary>Gợi ý cho giáo viên</summary>Dùng ở phần Luyện tập hoặc củng cố cuối tiết, mỗi câu 30 giây. Đạt từ 6/8 câu nhận giấy chứng nhận Kiến trúc sư góc. Có thể tổ chức thi đua theo tổ: tổ nào có nhiều bạn đạt chứng nhận nhất.</details>
+</section>
+
+<section class="view" id="v-info" hidden>
+  <div class="panel" style="max-width:920px;margin:0 auto;display:flex;flex-direction:column;gap:14px">
+    <span class="chip" style="align-self:flex-start">Thông tin học liệu (theo Công văn 5158/SGDĐT-GDTrH)</span>
+    <h2 style="font:800 28px 'Lexend',sans-serif;margin:0">Công trường Kiến trúc sư góc – Học liệu tương tác và mô phỏng</h2>
+    <div style="overflow-x:auto"><table class="info" id="infoT"></table></div>
+  </div>
+</section>
+</div>
+<footer>Học liệu số Toán 7 · GV Ngô Thị Phương – Trường THCS Võ Thị Sáu, phường An Biên, Hải Phòng · Giáo viên đồng sáng tạo cùng AI</footer>
+<script>
+/* ====== KHUNG CHUNG (dùng cho các học liệu Toán 7) ====== */
+const $=id=>document.getElementById(id),$$=(s,r=document)=>[...r.querySelectorAll(s)];
+function gcd(a,b){a=Math.abs(a);b=Math.abs(b);while(b){[a,b]=[b,a%b]}return a||1}
+function simp(f){const g=gcd(f.n,f.d);let n=f.n/g,d=f.d/g;if(d<0){n=-n;d=-d}return{n,d}}
+function parse(s){s=String(s).replace(/−/g,'-').replace(',','.').trim();
+  if(s.includes(' ')){const[w,fr]=s.split(' ');const[a,b]=fr.split('/').map(Number),W=Number(w);return simp({n:(Math.abs(W)*b+a)*(W<0?-1:1),d:b})}
+  if(s.includes('/')){const[a,b]=s.split('/').map(Number);return{n:a,d:b}}
+  const p=s.split('.');if(p.length===1)return{n:Number(s),d:1};
+  const d=Math.pow(10,p[1].length);return simp({n:Math.round(Number(s)*d),d})}
+function val(s){const f=parse(s);return f.n/f.d}
+function pretty(s){return String(s).replace(/-/g,'−')}
+function F(s){s=String(s);const neg=s[0]==='-',b=neg?s.slice(1):s;
+  if(b.includes(' ')){const[w,fr]=b.split(' ');const[n,d]=fr.split('/');return `<span class="fx">${neg?'−':''}${w}<span class="fr"><b>${n}</b><b>${d}</b></span></span>`}
+  if(b.includes('/')){const[n,d]=b.split('/');return `<span class="fx">${neg?'−':''}<span class="fr"><b>${n}</b><b>${d}</b></span></span>`}
+  return (neg?'−':'')+b}
+function fs(n,d){return (n<0?'−':'')+Math.abs(n)+(d===1?'':'/'+d)}
+function factors(n){const f=[];let d=2;n=Math.abs(n);while(n>1){while(n%d===0){f.push(d);n/=d}d++}return f}
+function decimal(a,b){const sign=(a<0)!==(b<0)&&a!==0?'-':'';a=Math.abs(a);b=Math.abs(b);
+  const int=Math.floor(a/b);let r=a%b;const seen={},digits=[],steps=[];let cs=-1;
+  while(r!==0&&digits.length<260){if(seen[r]!==undefined){cs=seen[r];break}seen[r]=digits.length;const q=Math.floor(r*10/b),nr=(r*10)%b;steps.push({r,q,nr});digits.push(q);r=nr}
+  const pre=cs<0?digits.join(''):digits.slice(0,cs).join(''),cyc=cs<0?'':digits.slice(cs).join('');
+  return{sign,int,pre,cyc,steps,repR:r}}
+function fmtD(d){return (d.sign?'−':'')+d.int+(d.pre||d.cyc?','+d.pre+(d.cyc?'('+d.cyc+')':''):'')}
+function shuffle(a){a=[...a];for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]]}return a}
+const sleep=ms=>new Promise(r=>setTimeout(r,ms));
+
+/* âm thanh */
+let AC=null,soundOn=true;try{soundOn=localStorage.getItem('vts-snd')!=='0'}catch(e){}
+function beep(f,d,type,v,w){if(!soundOn)return;try{AC=AC||new(window.AudioContext||window.webkitAudioContext)();
+  const o=AC.createOscillator(),g=AC.createGain(),t=AC.currentTime+(w||0);o.type=type||'sine';o.frequency.value=f;
+  g.gain.setValueAtTime(v||.08,t);g.gain.exponentialRampToValueAtTime(.0001,t+d);o.connect(g);g.connect(AC.destination);o.start(t);o.stop(t+d+.03)}catch(e){}}
+const sfx={ok(){beep(660,.14);beep(990,.22,'sine',.08,.11)},bad(){beep(190,.28,'square',.035)},tap(){beep(540,.07,'triangle',.06)},
+  flip(){beep(420,.05,'triangle',.04)},tick(){beep(880,.03,'square',.02)},win(){[523,659,784,1047].forEach((f,i)=>beep(f,.3,'sine',.08,i*.13))}};
+
+/* pháo giấy + thông báo */
+let cv,cx,parts=[],raf=0;
+function confetti(n){if(matchMedia('(prefers-reduced-motion: reduce)').matches)return;cv=cv||$('cf');cx=cx||cv.getContext('2d');cv.width=innerWidth;cv.height=innerHeight;
+  const cols=['#fbbf24','#f43f5e','#3b82f6','#22c55e','#ec4899','#14b8a6','#a78bfa'];
+  for(let i=0;i<(n||70);i++)parts.push({x:innerWidth/2+(Math.random()-.5)*240,y:innerHeight*.35,vx:(Math.random()-.5)*13,vy:-Math.random()*12-4,r:Math.random()*6+4,c:cols[i%7],a:Math.random()*6,l:95});
+  if(!raf)tick()}
+function tick(){cx.clearRect(0,0,cv.width,cv.height);parts.forEach(p=>{p.x+=p.vx;p.y+=p.vy;p.vy+=.45;p.a+=.2;p.l--;cx.save();cx.translate(p.x,p.y);cx.rotate(p.a);cx.fillStyle=p.c;cx.fillRect(-p.r/2,-p.r/4,p.r,p.r/2);cx.restore()});
+  parts=parts.filter(p=>p.l>0&&p.y<cv.height+20);raf=parts.length?requestAnimationFrame(tick):(cx.clearRect(0,0,cv.width,cv.height),0)}
+let toastT=0;function toast(t){const e=$('toast');e.innerHTML=t;e.classList.add('show');clearTimeout(toastT);toastT=setTimeout(()=>e.classList.remove('show'),2600)}
+
+/* trạng thái, huy hiệu */
+const ST={b:{},name:''};
+function loadST(){try{const o=JSON.parse(localStorage.getItem(L.key)||'{}');ST.b=o.b||{};ST.name=o.name||''}catch(e){}}
+function saveST(){try{localStorage.setItem(L.key,JSON.stringify(ST))}catch(e){}}
+function award(k){if(ST.b[k])return false;ST.b[k]=1;saveST();sfx.win();confetti(110);toast('🏅 Huy hiệu mới: '+L.badges[k]);counts();return true}
+function counts(){const n=Object.keys(L.badges).filter(k=>ST.b[k]).length;$('bc').textContent=n;$('bt').textContent=Object.keys(L.badges).length;
+  $$('.bpill').forEach(p=>{const k=p.dataset.badge;p.classList.toggle('got',!!ST.b[k]);p.textContent=(ST.b[k]?'🏅 ':'○ ')+L.badges[k]});
+  $$('#hubRooms .room').forEach(b=>{const r=L.rooms.find(x=>x[0]===b.dataset.go);b.querySelector('.st').textContent='★ '+r[5].filter(k=>ST.b[k]).length+'/'+r[5].length})}
+function say(t){const v=$$('.view').find(x=>!x.hidden);const s=v&&v.querySelector('.say');if(s)s.innerHTML='<b>'+L.coach+':</b> '+t}
+function msg(id,t,cls){$(id).innerHTML=t?`<div class="msg ${cls||'info'}">${t}</div>`:''}
+function prog(p,i,n,s){$(p+'-p').style.width=(i/n*100)+'%';$(p+'-c').textContent='Câu '+Math.min(i+1,n)+'/'+n+' · Đúng ngay lần đầu: '+s}
+const STOP=[];function stopAll(){STOP.forEach(f=>{try{f()}catch(e){}})}
+function go(v){if(!$('v-'+v))v='hub';stopAll();$$('.view').forEach(x=>x.hidden=x.id!=='v-'+v);$$('#nav button').forEach(b=>b.classList.toggle('on',b.dataset.go===v));
+  if(L.intro&&L.intro[v])say(L.intro[v]);if(v===L.quizRoom)qIntro();if(L.onEnter)L.onEnter(v);
+  try{history.replaceState(null,'','#'+v)}catch(e){}window.scrollTo(0,0)}
+
+/* thử thách tính giờ + giấy chứng nhận */
+let qi=0,qs=0,qt=null,tl=30,qLock=false,QS=[];
+STOP.push(()=>clearInterval(qt));
+function qIntro(){clearInterval(qt);$('quiz').innerHTML=`<div class="panel" style="text-align:center"><span class="chip">${L.quiz.length} câu · mỗi câu 30 giây</span>
+  <h2 style="font:800 30px 'Lexend',sans-serif;margin:12px 0 6px">${L.quizTitle}</h2><p class="dim">Đúng từ ${L.quizPass}/${L.quiz.length} câu trở lên để nhận giấy chứng nhận <b>${L.certTitle}</b>.</p>
+  <div class="row center"><input id="qName" class="numin" style="width:280px;font-size:17px;text-align:left" maxlength="40" placeholder="Tên và lớp của em" value="${(ST.name||'').replace(/"/g,'&quot;')}"></div>
+  <div class="row center"><button class="btn main" id="qGo">▶ Bắt đầu thử thách</button></div><p class="dim small">Tên chỉ lưu trên máy của em, không gửi đi đâu.</p></div>`;
+  $('qGo').onclick=()=>{ST.name=$('qName').value.trim();saveST();QS=L.quiz.map(q=>({...q,ord:shuffle(q.o.map((t,i)=>i))}));qi=0;qs=0;qRender()}}
+function qRender(){clearInterval(qt);const el=$('quiz');
+  if(qi>=QS.length){const pass=qs>=L.quizPass;if(pass)award('quiz');
+    const n=Object.keys(L.badges).filter(k=>ST.b[k]).length,N=Object.keys(L.badges).length;
+    el.innerHTML=pass?`<div class="cert"><div class="m">${L.certTop}</div><h2>GIẤY CHỨNG NHẬN</h2><div class="ct">${L.certTitle}</div><div style="margin-top:10px">Trao cho</div>
+      <div class="who" id="certWho">${ST.name||'. . . . . . . .'}</div><div>đã hoàn thành ${L.certWhat} với <b>${qs}/${QS.length}</b> câu đúng và đạt <b>${n}/${N}</b> huy hiệu.</div>
+      <div class="small" style="margin-top:6px;opacity:.8">Ngày ${new Date().toLocaleDateString('vi-VN')} · GV hướng dẫn: Ngô Thị Phương – Trường THCS Võ Thị Sáu, Hải Phòng</div>
+      <div class="row center"><input id="cName" maxlength="40" placeholder="Sửa tên của em" value="${(ST.name||'').replace(/"/g,'&quot;')}"></div>
+      <div class="small" style="margin-top:6px">📸 Chụp màn hình giấy chứng nhận gửi cô nhé!</div></div><div class="row center"><button class="btn ghost" id="qAgain">↻ Làm lại thử thách</button></div>`
+     :`<div class="panel" style="text-align:center"><h2 style="font:800 30px 'Lexend',sans-serif">${qs}/${QS.length} câu đúng</h2><p>Cần ${L.quizPass}/${QS.length} câu để nhận giấy chứng nhận. Em ôn lại các phòng rồi thử lại nhé!</p><div class="row center"><button class="btn main" id="qAgain">↻ Làm lại</button></div></div>`;
+    if(pass){confetti(160);$('cName').oninput=e=>{ST.name=e.target.value.trim();saveST();$('certWho').textContent=ST.name||'. . . . . . . .'}}
+    $('qAgain').onclick=()=>{QS=L.quiz.map(q=>({...q,ord:shuffle(q.o.map((t,i)=>i))}));qi=0;qs=0;qRender()};return}
+  const q=QS[qi];tl=30;qLock=false;
+  el.innerHTML=`<div class="panel"><div class="qtop"><span>Câu ${qi+1}/${QS.length}</span><span>Đúng: ${qs}</span><span id="qTime">⏱ 30 giây</span></div><div class="qbar"><i id="qBar" style="width:100%"></i></div>
+    <div class="qq">${q.q}</div><div class="opts" id="qOpts">${q.ord.map(i=>`<button class="opt" data-i="${i}">${q.o[i]}</button>`).join('')}</div><div id="qFb"></div>
+    <div class="row"><button class="btn main" id="qNext" hidden>Câu tiếp ➜</button></div></div>`;
+  $$('#qOpts .opt').forEach(b=>b.onclick=()=>qAns(+b.dataset.i));$('qNext').onclick=()=>{qi++;qRender()};
+  qt=setInterval(()=>{tl--;$('qTime').textContent='⏱ '+tl+' giây';$('qBar').style.width=(tl/30*100)+'%';if(tl<=5&&tl>0)sfx.tick();if(tl<=0)qAns(-1)},1000)}
+function qAns(i){if(qLock)return;qLock=true;clearInterval(qt);const q=QS[qi],ok=i===q.a;if(ok){qs++;sfx.ok()}else sfx.bad();
+  $$('#qOpts .opt').forEach(b=>{const k=+b.dataset.i;if(k===q.a)b.classList.add('right');else if(k===i)b.classList.add('wrong');b.disabled=true});
+  msg('qFb',(i<0?'⏰ Hết giờ! ':ok?'✅ Chính xác! ':'💭 Chưa đúng. ')+(q.e||''),ok?'ok':'warn');$('qNext').hidden=false;$('qNext').textContent=qi<QS.length-1?'Câu tiếp ➜':'Xem kết quả ➜'}
+
+/* khởi động */
+function boot(){loadST();
+  $('snd').textContent=soundOn?'🔊':'🔇';$('snd').onclick=()=>{soundOn=!soundOn;$('snd').textContent=soundOn?'🔊':'🔇';try{localStorage.setItem('vts-snd',soundOn?'1':'0')}catch(e){}};
+  $('nav').innerHTML=[['hub','00','Phòng chờ'],...L.rooms.map(r=>[r[0],r[3],r[1]]),['info','ⓘ','Thông tin học liệu']].map(r=>`<button data-go="${r[0]}"><span class="n">${r[1]}</span>${r[2]}</button>`).join('');
+  $$('#nav button').forEach(b=>b.onclick=()=>go(b.dataset.go));
+  $('hubRooms').innerHTML=L.rooms.map(r=>`<button class="panel room" data-go="${r[0]}"><span class="t"><small>${r[3]}</small><b>${r[4]}</b></span><span><h3>${r[1]}</h3><p>${r[2]}</p><span class="st"></span></span></button>`).join('');
+  $$('#hubRooms .room').forEach(b=>b.onclick=()=>go(b.dataset.go));
+  L.rooms.forEach(r=>{const s=$('v-'+r[0]);if(s)s.insertAdjacentHTML('afterbegin',`<div class="rhead"><span class="chip">Phòng ${r[3]} · ${r[1]}</span><div class="coach"><span class="av">${L.avatar}</span><div class="say"></div></div></div>`)});
+  $('infoT').innerHTML=L.info.map(r=>`<tr><th>${r[0]}</th><td>${r[1]}</td></tr>`).join('');
+  counts();if(L.hero)L.hero();
+  const h=location.hash.slice(1);go($('v-'+h)?h:'hub')}
+
+/* ====== BÀI 8: CÔNG TRƯỜNG KIẾN TRÚC SƯ GÓC ====== */
+const L={key:'vts-toan7-b8',coach:'Kiến trúc sư Góc',avatar:'👷',
+ rooms:[['r1','Hai góc kề bù','Nhận diện hai góc kề nhau, kề bù; mở barie bằng cách tính góc kề bù.','01','180°',['adj','gate']],
+  ['r2','Ngã tư đối đỉnh','Phân biệt hai góc đối đỉnh với hình "trông giống"; điều khiển ngã tư.','02','✕',['vert','cross']],
+  ['r3','Tiệm bánh phân giác','Kéo dao chia đôi miếng bánh; các bước vẽ tia phân giác bằng thước và gấp giấy.','03','½∠',['pizza','fold']],
+  ['r4','Bản thiết kế','Bài toán tổng hợp về góc kề bù, đối đỉnh và tia phân giác.','04','✎',['plan']],
+  ['r5','Thử thách & chứng nhận','8 câu hỏi tính giờ, nhận giấy chứng nhận Kiến trúc sư góc.','05','★',['quiz']]],
+ badges:{adj:'Mắt tinh nhận góc',gate:'Người gác barie',vert:'Thám tử đối đỉnh',cross:'Cảnh sát ngã tư',pizza:'Thợ bánh công bằng',fold:'Thợ vẽ phân giác',plan:'Kĩ sư bản vẽ',quiz:'Kiến trúc sư góc'},
+ quizRoom:'r5',quizPass:6,quizTitle:'Thử thách Kiến trúc sư góc',certTitle:'Kiến trúc sư góc',certTop:'CÔNG TRƯỜNG KIẾN TRÚC SƯ GÓC · TOÁN 7 · BÀI 8',certWhat:'thử thách về góc ở vị trí đặc biệt và tia phân giác',
+ intro:{r1:'Chào em! Hai góc <b>kề bù</b> thì vừa kề nhau, vừa có tổng bằng <b>180°</b>. Vào việc thôi!',
+  r2:'Hai góc <b>đối đỉnh</b>: mỗi cạnh của góc này là <b>tia đối</b> của một cạnh của góc kia. Và chúng luôn bằng nhau!',
+  r3:'<b>Tia phân giác</b> nằm giữa hai cạnh và chia góc thành hai góc bằng nhau, mỗi góc bằng một nửa góc ban đầu.',
+  r4:'Bản thiết kế hôm nay cần cả ba kiến thức: kề bù, đối đỉnh, phân giác. Nháp ra vở trước nhé!',
+  r5:'Thử thách cuối cùng! 8 câu, mỗi câu 30 giây. Cố lên kiến trúc sư!'},
+ quiz:[
+  {q:'Hai góc kề bù có tổng số đo bằng:',o:['180°','90°','360°','100°'],a:0,e:'Hai góc kề bù có tổng bằng 180°.'},
+  {q:'Cho ∠xOy = 70°. Góc kề bù với ∠xOy có số đo là:',o:['110°','70°','20°','290°'],a:0,e:'180° − 70° = 110°.'},
+  {q:'Hai góc đối đỉnh thì:',o:['bằng nhau','bù nhau','kề nhau','luôn là góc vuông'],a:0,e:'Tính chất: hai góc đối đỉnh thì bằng nhau.'},
+  {q:'Hai đường thẳng cắt nhau tạo thành bao nhiêu cặp góc đối đỉnh (không kể góc bẹt)?',o:['2','1','4','3'],a:0,e:'Có 2 cặp: ∠1 và ∠3; ∠2 và ∠4.'},
+  {q:'Oz là tia phân giác của ∠xOy = 90°. Khi đó ∠xOz bằng:',o:['45°','90°','30°','180°'],a:0,e:'∠xOz = 90° : 2 = 45°.'},
+  {q:'Tia Ot là tia phân giác của ∠xOy khi:',o:['Ot nằm giữa Ox, Oy và ∠xOt = ∠tOy','Ot nằm giữa Ox và Oy','∠xOt = 90°','∠xOt + ∠tOy = 180°'],a:0,e:'Cần cả hai điều kiện: nằm giữa hai cạnh và tạo hai góc bằng nhau.'},
+  {q:'Hai đường thẳng cắt nhau, một góc bằng 40°. Ba góc còn lại là:',o:['140°, 40°, 140°','40°, 40°, 40°','140°, 140°, 140°','50°, 40°, 50°'],a:0,e:'Góc đối đỉnh bằng 40°, hai góc kề bù với nó bằng 140°.'},
+  {q:'Gấp giấy để tìm tia phân giác của ∠xOy, ta gấp sao cho:',o:['cạnh Ox trùng với cạnh Oy','đỉnh O trùng với cạnh Ox','Ox vuông góc với Oy','nếp gấp trùng với cạnh Ox'],a:0,e:'Gấp để Ox trùng Oy, nếp gấp là tia phân giác.'}],
+ info:[['Tên học liệu','Công trường Kiến trúc sư góc'],['Loại học liệu','Học liệu tương tác và mô phỏng (mục II.2.3)'],['Môn học, lớp','Toán 7 – bộ sách Kết nối tri thức với cuộc sống'],['Bài học','Chương III. Bài 8. Góc ở vị trí đặc biệt. Tia phân giác của một góc'],
+  ['Yêu cầu cần đạt','Nhận biết được các góc ở vị trí đặc biệt (hai góc kề bù, hai góc đối đỉnh). Nhận biết được tia phân giác của một góc. Nhận biết được cách vẽ tia phân giác của một góc bằng dụng cụ học tập.'],
+  ['Mục đích, đối tượng','Giáo viên dùng trong hoạt động khám phá, luyện tập, vận dụng; học sinh lớp 7 tự học, tự kiểm tra. Dùng được trong dạy học trực tiếp, trực tuyến, kết hợp.'],
+  ['Hướng dẫn khai thác','Chọn phòng trên thanh điều hướng. Mỗi phòng có mục "Gợi ý cho giáo viên". Nút 🤖 mở trợ giảng AI chỉ gợi ý, không cho đáp án. Chạy trên trình duyệt (máy tính, điện thoại, máy tính bảng), không cần cài đặt, không cần đăng nhập; trợ giảng AI cần kết nối Internet.'],
+  ['Tác giả','Ngô Thị Phương – Tổ Khoa học tự nhiên, Trường THCS Võ Thị Sáu, phường An Biên, thành phố Hải Phòng'],
+  ['Nguồn tài liệu','SGK Toán 7 tập một (Kết nối tri thức với cuộc sống), Bài 8: hai góc kề bù, hai góc đối đỉnh, tia phân giác của một góc, cách vẽ tia phân giác bằng thước đo góc và gấp giấy. Các tình huống (barie, ngã tư, chia bánh) do tác giả xây dựng.'],
+  ['Bản quyền','Hình vẽ, mô phỏng, âm thanh do tác giả tạo bằng mã; không dùng tài nguyên của bên thứ ba. Phông chữ Lexend, Be Vietnam Pro, JetBrains Mono (giấy phép SIL OFL). Cho phép sử dụng, chỉnh sửa cho mục đích giáo dục, ghi rõ nguồn.'],
+  ['Sử dụng trí tuệ nhân tạo','Có dùng trợ lý AI Claude (Anthropic) hỗ trợ thiết kế, viết mã; trợ giảng AI dùng Gemini (Google) với lời nhắc sư phạm do tác giả soạn. Tác giả đã kiểm tra, xác minh nội dung và chịu trách nhiệm về tính chính xác.'],
+  ['An toàn thông tin','Không thu thập, không gửi dữ liệu cá nhân; tên trên giấy chứng nhận và huy hiệu chỉ lưu trên thiết bị của người dùng.'],['Phiên bản','1.0 – tháng 10/2026']],
+ hero:heroB8};
+
+/* hình học */
+const C1='#1d4ed8',C2='#dd560c',INK='#1e2b44';
+function geo(cx,cy){const rad=d=>d*Math.PI/180,pt=(d,r)=>({x:cx+r*Math.cos(rad(d)),y:cy-r*Math.sin(rad(d))});
+  return{pt,cx,cy,
+    ray(d,R,c,lab,o={}){const p=pt(d,R),l=pt(d,R+20);return `<line x1="${cx}" y1="${cy}" x2="${p.x}" y2="${p.y}" stroke="${c}" stroke-width="${o.w||4}" stroke-linecap="round" ${o.dash?'stroke-dasharray="9 7"':''}/>`+(lab?`<text x="${l.x}" y="${l.y+7}" text-anchor="middle" font-size="19" font-weight="800" fill="${o.lc||c}">${lab}</text>`:'')},
+    arc(a,b,r,c,txt,o={}){const p1=pt(a,r),p2=pt(b,r),lg=(b-a)>180?1:0,m=pt((a+b)/2,r+(o.tr||20));
+      return `<path ${o.attr||''} d="M${cx},${cy} L${p1.x},${p1.y} A${r},${r} 0 ${lg} 0 ${p2.x},${p2.y} Z" fill="${c}" fill-opacity="${o.op==null?.2:o.op}" stroke="${c}" stroke-width="2"/>`+(txt?`<text x="${m.x}" y="${m.y+6}" text-anchor="middle" font-size="${o.fs||17}" font-weight="800" fill="${o.tc||c}">${txt}</text>`:'')},
+    dot(c){return `<circle cx="${cx}" cy="${cy}" r="5" fill="${c||INK}"/><text x="${cx-10}" y="${cy+24}" font-size="17" font-weight="800" fill="${c||INK}">O</text>`}}}
+
+/* ---------- PHÒNG CHỜ: chiếc kéo ---------- */
+function heroB8(){const g=geo(250,150);let t=0;
+  function draw(){const a=Math.round(30+22*Math.sin(t));let h='';
+    h+=g.arc(-a/2,a/2,62,C1,a+'°',{op:.25,tr:24})+g.arc(180-a/2,180+a/2,62,C1,a+'°',{op:.25,tr:24})+g.arc(a/2,180-a/2,40,C2,'',{op:.12})+g.arc(180+a/2,360-a/2,40,C2,'',{op:.12});
+    [[a/2,180+a/2],[-a/2,180-a/2]].forEach(([u,v],k)=>{const p=g.pt(u,190),q=g.pt(v,120),hc=g.pt(v,150);
+      h+=`<line x1="${q.x}" y1="${q.y}" x2="${p.x}" y2="${p.y}" stroke="#94a3b8" stroke-width="12" stroke-linecap="round"/><line x1="${q.x}" y1="${q.y}" x2="${p.x}" y2="${p.y}" stroke="#cbd5e1" stroke-width="5" stroke-linecap="round"/>
+      <ellipse cx="${hc.x}" cy="${hc.y}" rx="26" ry="18" fill="none" stroke="${k?'#dd560c':'#1d4ed8'}" stroke-width="9" transform="rotate(${-v} ${hc.x} ${hc.y})"/>`});
+    h+=`<circle cx="250" cy="150" r="9" fill="#1e2b44"/><circle cx="250" cy="150" r="3" fill="#fff"/>`;
+    $('heroSvg').innerHTML=h;$('heroCap').innerHTML=`Góc giữa hai lưỡi kéo = góc giữa hai tay cầm = <span style="color:${C1}">${a}°</span>`}
+  (function loop(){if(!$('v-hub').hidden){t+=.035;draw()}setTimeout(()=>requestAnimationFrame(loop),40)})()}
+
+/* ---------- R1a NHẬN DIỆN CẶP GÓC ---------- */
+(function(){const g=geo(220,170);
+  const T=[{r:[[0,'x'],[60,'y'],[180,'z']],a:[[0,60],[60,180]],k:0,w:'Chung đỉnh O, chung cạnh Oy; hai cạnh còn lại Ox, Oz là hai tia đối nhau → <b>kề bù</b>, tổng bằng 180°.'},
+   {r:[[0,'x'],[50,'y'],[110,'z']],a:[[0,50],[50,110]],k:1,w:'Chung cạnh Oy, Ox và Oz nằm về hai phía của Oy, nhưng Ox, Oz không phải hai tia đối nhau → <b>kề nhau, không bù</b>.'},
+   {r:[[0,'x'],[40,'y'],[95,'z'],[150,'t']],a:[[0,40],[95,150]],k:2,w:'Hai góc xOy và zOt không có cạnh chung → <b>không kề nhau</b>.'},
+   {r:[[0,'x'],[60,'y'],[120,'z']],a:[[0,60],[0,120]],k:2,w:'Hai góc xOy và xOz chung cạnh Ox nhưng Oy, Oz nằm <b>cùng một phía</b> của Ox (góc này nằm trong góc kia) → <b>không kề nhau</b>.'},
+   {r:[[30,'x'],[100,'y'],[210,'z']],a:[[30,100],[100,210]],k:0,w:'Ox và Oz lệch nhau đúng 180° nên là hai tia đối nhau; hai góc chung cạnh Oy → <b>kề bù</b>.'},
+   {r:[[90,'x'],[150,'y'],[200,'z']],a:[[90,150],[150,200]],k:1,w:'Chung cạnh Oy, Ox và Oz ở hai phía của Oy, nhưng Ox, Oz không phải hai tia đối nhau → <b>kề nhau, không bù</b>.'}];
+  let i=0,s=0,done=false;
+  function draw(){const it=T[i];let h='';it.a.forEach((q,k)=>h+=g.arc(q[0],q[1],k?62:46,k?C2:C1,'',{op:.25}));it.r.forEach(([d,l])=>h+=g.ray(d,130,INK,l));h+=g.dot();$('ad-svg').innerHTML=h}
+  function load(){done=false;draw();msg('ad-f','');prog('ad',i,T.length,s);$$('#ad-o .opt').forEach(b=>{b.className='opt';b.disabled=false})}
+  $$('#ad-o .opt').forEach(b=>b.onclick=()=>{if(done)return;done=true;const ok=+b.dataset.k===T[i].k;if(ok){s++;sfx.ok()}else sfx.bad();
+    $$('#ad-o .opt').forEach(x=>{if(+x.dataset.k===T[i].k)x.classList.add('right');else if(x===b)x.classList.add('wrong')});msg('ad-f',(ok?'✅ ':'💭 ')+T[i].w,ok?'ok':'warn');prog('ad',i+1,T.length,s)});
+  $('ad-nx').onclick=()=>{if(!done){msg('ad-f','Em chọn một đáp án trước nhé!','info');return}
+    if(i<T.length-1){i++;load()}else{const p=s>=5;msg('ad-f',p?'🎉 Em nhận diện đúng '+s+'/6 hình!':'Em đúng '+s+'/6 hình. Cần 5/6 để nhận huy hiệu, làm lại nhé!',p?'ok':'warn');if(p)award('adj');else{i=0;s=0;setTimeout(load,1800)}}};
+  window.__ad={get k(){return T[i].k}};load()})();
+
+/* ---------- R1b BARIE ---------- */
+(function(){const g=geo(220,205);const T=[[65,1,115],[120,2,60],[90,1,90],[35,1,145],[148,1,32]];let i=0,s=0,tries=0,ok=false,busy=false,pole=0,car=-60;
+  function draw(showAll){const[v,which]=T[i],a=which===1?v:180-v;const A=pole||a;let h=`<rect x="0" y="205" width="440" height="48" fill="#cfd6e0"/><line x1="0" y1="229" x2="440" y2="229" stroke="#fff" stroke-width="3" stroke-dasharray="18 14"/>`;
+    const l1=which===1||showAll?a+'°':'?',l2=which===2||showAll?(180-a)+'°':'?';
+    h+=g.arc(0,A,54,C1,'∠xOy = '+(pole&&!showAll?'':l1),{op:.18,tr:34,fs:15})+g.arc(A,180,74,C2,'∠yOx\' = '+(pole&&!showAll?'':l2),{op:.14,tr:30,fs:15});
+    h+=g.ray(0,178,INK,'x',{w:3})+g.ray(180,178,INK,"x'",{w:3});
+    const p=g.pt(A,170);h+=`<line x1="220" y1="205" x2="${p.x}" y2="${p.y}" stroke="#dc2626" stroke-width="11" stroke-linecap="round"/><line x1="220" y1="205" x2="${p.x}" y2="${p.y}" stroke="#fff" stroke-width="11" stroke-dasharray="16 16"/>`;
+    const lb=g.pt(A,192);h+=`<text x="${lb.x}" y="${lb.y+6}" text-anchor="middle" font-size="19" font-weight="800" fill="#dc2626">y</text>`;
+    h+=`<rect x="208" y="200" width="24" height="40" rx="4" fill="#1e2b44"/><circle cx="220" cy="205" r="6" fill="#f5b400"/>`;
+    if(car>-60)h+=`<text x="${car}" y="246" font-size="34">🚚</text>`;$('gt-svg').innerHTML=h}
+  function load(){tries=0;ok=false;pole=0;car=-60;const[v,which]=T[i];$('gt-q').innerHTML=which===1?`Barie mở ∠xOy = ${v}°. Tính ∠yOx'.`:`∠yOx' = ${v}°. Tính ∠xOy.`;$('gt-in').value='';msg('gt-f','');prog('gt',i,T.length,s);draw(false)}
+  async function open(){busy=true;const[v,which]=T[i],a=which===1?v:180-v,t0=performance.now();
+    await new Promise(r=>{(function an(n){const t=Math.min(1,(n-t0)/700);pole=a+(88-a)*t;draw(false);t<1?requestAnimationFrame(an):r()})(t0)});
+    const t1=performance.now();await new Promise(r=>{(function an(n){const t=Math.min(1,(n-t1)/1300);car=-60+t*520;draw(false);t<1?requestAnimationFrame(an):r()})(t1)});
+    pole=0;car=-60;draw(true);busy=false}
+  $('gt-ck').onclick=()=>{if(ok||busy)return;const v=parseInt($('gt-in').value);if(isNaN(v)){msg('gt-f','Em nhập số đo góc nhé!','info');return}tries++;
+    if(v===T[i][2]){ok=true;if(tries===1)s++;sfx.ok();msg('gt-f',`✅ Đúng! ${T[i][0]}° + ${v}° = 180°. Barie mở, xe vào công trường!`,'ok');say('Chuẩn! Hai góc kề bù luôn có tổng 180°.');prog('gt',i+1,T.length,s);open()}
+    else{sfx.bad();msg('gt-f','Barie chưa mở. 💡 Hai góc kề bù có tổng bằng bao nhiêu độ?'+(tries>=2?` Tính 180° − ${T[i][0]}°.`:''),'warn')}};
+  $('gt-in').addEventListener('keydown',e=>{if(e.key==='Enter')$('gt-ck').click()});
+  $('gt-nx').onclick=()=>{if(busy)return;if(!ok&&tries===0){msg('gt-f','Em nhập đáp số trước nhé!','info');return}
+    if(i<T.length-1){i++;load()}else{const p=s>=4;msg('gt-f',p?'🎉 Em mở đúng ngay '+s+'/5 barie!':'Em đúng ngay '+s+'/5 câu. Cần 4/5 để nhận huy hiệu, làm lại nhé!',p?'ok':'warn');if(p)award('gate');else{i=0;s=0;setTimeout(load,1800)}}};
+  window.__gt={get ans(){return T[i][2]},get busy(){return busy}};load()})();
+
+/* ---------- R2a CÓ PHẢI ĐỐI ĐỈNH ---------- */
+(function(){const g=geo(220,160);
+  const T=[{r:[[0,'x'],[50,'y'],[180,"x'"],[230,"y'"]],a:[[0,50],[180,230]],k:1,w:"Ox' là tia đối của Ox, Oy' là tia đối của Oy → hai góc <b>đối đỉnh</b> (và bằng nhau)."},
+   {r:[[0,'x'],[50,'y'],[180,"x'"],[230,"y'"]],a:[[0,50],[50,180]],k:0,w:"Hai góc xOy và yOx' chung cạnh Oy → đây là hai góc <b>kề bù</b>, không phải đối đỉnh."},
+   {r:[[0,'x'],[50,'y'],[170,'z'],[225,'t']],a:[[0,50],[170,225]],k:0,w:'Oz lệch Ox 170° (không phải 180°) nên Oz <b>không phải tia đối</b> của Ox → không đối đỉnh, dù trông rất giống!'},
+   {r:[[0,'x'],[120,'y'],[180,"x'"],[300,"y'"]],a:[[120,180],[300,360]],k:1,w:"Cạnh Oy và Oy' là hai tia đối nhau, cạnh Ox' và Ox là hai tia đối nhau → <b>đối đỉnh</b>."},
+   {r:[[20,'x'],[80,'y'],[200,"x'"],[260,"y'"]],a:[[20,80],[200,260]],k:1,w:"Ox' lệch Ox đúng 180°, Oy' lệch Oy đúng 180° → <b>đối đỉnh</b>."},
+   {r:[[0,'x'],[60,'y'],[180,"x'"],[250,'t']],a:[[0,60],[180,250]],k:0,w:"Ox' là tia đối của Ox, nhưng Ot lệch Oy 190° nên Ot <b>không phải tia đối</b> của Oy → không đối đỉnh."}];
+  let i=0,s=0,done=false;
+  function load(){done=false;const it=T[i];let h='';it.a.forEach((q,k)=>h+=g.arc(q[0],q[1],k?58:58,k?C2:C1,'',{op:.28}));it.r.forEach(([d,l])=>h+=g.ray(d,125,INK,l));h+=g.dot();$('vt-svg').innerHTML=h;
+    msg('vt-f','');prog('vt',i,T.length,s);$$('#v-r2 .yn .opt').forEach(b=>{b.className='opt'})}
+  $$('#v-r2 .yn .opt').forEach(b=>b.onclick=()=>{if(done)return;done=true;const ok=+b.dataset.k===T[i].k;if(ok){s++;sfx.ok()}else sfx.bad();
+    $$('#v-r2 .yn .opt').forEach(x=>{if(+x.dataset.k===T[i].k)x.classList.add('right');else if(x===b)x.classList.add('wrong')});msg('vt-f',(ok?'✅ ':'💭 ')+T[i].w,ok?'ok':'warn');prog('vt',i+1,T.length,s)});
+  $('vt-nx').onclick=()=>{if(!done){msg('vt-f','Em chọn Đối đỉnh hoặc Không đối đỉnh trước nhé!','info');return}
+    if(i<T.length-1){i++;load()}else{const p=s>=5;msg('vt-f',p?'🎉 Em nhận diện đúng '+s+'/6 hình!':'Em đúng '+s+'/6 hình. Cần 5/6 để nhận huy hiệu, làm lại nhé!',p?'ok':'warn');if(p)award('vert');else{i=0;s=0;setTimeout(load,1800)}}};
+  window.__vt={get k(){return T[i].k}};load()})();
+
+/* ---------- R2b NGÃ TƯ ---------- */
+(function(){const g=geo(220,170);
+  const T=[{a:55,t:'tap',g:1,w:'doi'},{a:110,t:'tap',g:2,w:'doi'},{a:70,t:'tap',g:3,w:'ke'},{a:72,t:'num',g:1},{a:125,t:'num',g:2},{a:40,t:'tap',g:4,w:'doi'}];
+  let i=0,s=0,tries=0,ok=false;const opp=k=>(k+1)%4+1,V=(k,a)=>k%2?a:180-a;
+  const SEC=a=>[[0,a],[a,180],[180,180+a],[180+a,360]];
+  function draw(mark){const it=T[i],a=it.a;let h=`<rect width="440" height="340" fill="#e8f3e2"/>`;
+    [0,a].forEach(d=>{const p=g.pt(d,320),q=g.pt(d+180,320);h+=`<line x1="${q.x}" y1="${q.y}" x2="${p.x}" y2="${p.y}" stroke="#6b7280" stroke-width="46"/><line x1="${q.x}" y1="${q.y}" x2="${p.x}" y2="${p.y}" stroke="#fff" stroke-width="3" stroke-dasharray="16 14"/>`});
+    SEC(a).forEach(([u,v],k)=>{const m=g.pt((u+v)/2,140);h+=`<text x="${m.x}" y="${m.y+12}" text-anchor="middle" font-size="30">${['🏫','🌳','🏠','🌲'][k]}</text>`});
+    SEC(a).forEach(([u,v],k)=>{const n=k+1,hi=n===it.g,mk=mark&&mark[n];const c=mk||(hi?C2:'#1e2b44');
+      h+=g.arc(u,v,72,c,'',{op:hi||mk?.55:.1,attr:`class="sec" data-k="${n}"`});const m=g.pt((u+v)/2,92);
+      h+=`<circle cx="${m.x}" cy="${m.y}" r="15" fill="#fff" stroke="${c}" stroke-width="2"/><text x="${m.x}" y="${m.y+6}" text-anchor="middle" font-size="17" font-weight="900" fill="${c}">${n}</text>`;
+      if(it.t==='num'&&hi){const q=g.pt((u+v)/2,46);h+=`<text x="${q.x}" y="${q.y+5}" text-anchor="middle" font-size="14" font-weight="800" fill="#fff">${V(n,a)}°</text>`}});
+    h+=`<circle cx="220" cy="170" r="6" fill="#f5b400" stroke="#1e2b44" stroke-width="2"/>`;$('cr-svg').innerHTML=h;
+    if(it.t==='tap')$$('#cr-svg .sec').forEach(p=>p.onclick=()=>tap(+p.dataset.k))}
+  function load(){tries=0;ok=false;const it=T[i];msg('cr-f','');prog('cr',i,T.length,s);
+    if(it.t==='tap'){$('cr-q').innerHTML=`Góc ${it.g} được tô cam. Chạm vào ${it.w==='doi'?'góc <b>đối đỉnh</b>':'<b>một góc kề bù</b>'} với góc ${it.g}.`;$('cr-nums').innerHTML=''}
+    else{const rest=[1,2,3,4].filter(k=>k!==it.g);$('cr-q').innerHTML=`Biết ∠${it.g} = ${V(it.g,it.a)}°. Tính ba góc còn lại.`;
+      $('cr-nums').innerHTML=rest.map(k=>`<span>∠${k} =</span><input class="numin" data-k="${k}" type="number" inputmode="numeric" aria-label="Góc ${k}" style="width:76px"><span>°</span>`).join('')+`<button class="btn main" id="cr-ck">✔ Kiểm tra</button>`;$('cr-ck').onclick=check}
+    draw()}
+  function tap(k){if(ok)return;const it=T[i],good=it.w==='doi'?k===opp(it.g):(k!==it.g&&k!==opp(it.g));tries++;
+    if(good){ok=true;if(tries===1)s++;sfx.ok();draw({[k]:'#16a34a'});
+      msg('cr-f',`✅ Đúng! ${it.w==='doi'?`Góc ${k} đối đỉnh với góc ${it.g}: hai cạnh của góc này là tia đối của hai cạnh góc kia, nên ∠${k} = ∠${it.g}.`:`Góc ${k} và góc ${it.g} chung một cạnh, hai cạnh còn lại là hai tia đối nhau → kề bù, tổng 180°.`}`,'ok');prog('cr',i+1,T.length,s)}
+    else{sfx.bad();draw({[k]:'#dc2626'});msg('cr-f',k===it.g?'Đó chính là góc đã tô màu!':(it.w==='doi'?`Góc ${k} chung một cạnh với góc ${it.g} nên là góc kề bù. Góc đối đỉnh nằm ở phía đối diện qua O.`:`Góc ${k} nằm đối diện qua O, đó là góc đối đỉnh. Góc kề bù phải chung một cạnh.`),'warn')}}
+  function check(){if(ok)return;const it=T[i],ins=$$('#cr-nums input');if(ins.some(x=>x.value==='')){msg('cr-f','Em điền đủ ba ô nhé!','info');return}tries++;
+    const bad=ins.filter(x=>+x.value!==V(+x.dataset.k,it.a)).map(x=>'∠'+x.dataset.k);
+    if(!bad.length){ok=true;if(tries===1)s++;sfx.ok();draw({1:'#16a34a',2:'#16a34a',3:'#16a34a',4:'#16a34a'});msg('cr-f',`✅ Chính xác! Góc đối đỉnh bằng ∠${it.g} = ${V(it.g,it.a)}°; hai góc kề bù với nó bằng 180° − ${V(it.g,it.a)}° = ${180-V(it.g,it.a)}°.`,'ok');prog('cr',i+1,T.length,s)}
+    else{sfx.bad();msg('cr-f','Chưa đúng: '+bad.join(', ')+'. 💡 Góc nào đối đỉnh với ∠'+it.g+'? Góc nào kề bù với ∠'+it.g+'?','warn')}}
+  $('cr-nx').onclick=()=>{if(!ok&&tries===0){msg('cr-f','Em làm lượt này trước đã nhé!','info');return}
+    if(i<T.length-1){i++;load()}else{const p=s>=5;msg('cr-f',p?'🎉 Em đúng ngay '+s+'/6 lượt!':'Em đúng ngay '+s+'/6 lượt. Cần 5/6 để nhận huy hiệu, làm lại nhé!',p?'ok':'warn');if(p)award('cross');else{i=0;s=0;setTimeout(load,1800)}}};
+  window.__cr={get it(){return T[i]},opp,V};load()})();
+
+/* ---------- R3a CHIA BÁNH ---------- */
+(function(){const g=geo(220,250);const T=[80,120,64,150,100];let i=0,s=0,tries=0,ok=false,z=10;const R=175,sv=$('pz-svg'),rg=$('pz-r');
+  const TOP=[[.15,.45],[.3,.75],[.55,.35],[.7,.7],[.85,.5],[.45,.6],[.25,.25],[.65,.2]];
+  function draw(fold){const A=T[i];let h='';
+    if($('pz-pro').checked){h+=`<path d="M${220-205},250 A205,205 0 0 1 ${220+205},250" fill="#fff7d6" stroke="#d99a00" stroke-width="2"/>`;for(let d=0;d<=180;d+=10){const p=g.pt(d,205),q=g.pt(d,d%30?195:185);h+=`<line x1="${p.x}" y1="${p.y}" x2="${q.x}" y2="${q.y}" stroke="#8a5d00" stroke-width="${d%30?1.5:2.5}"/>`;if(d%30===0&&d%180){const t=g.pt(d,220);h+=`<text x="${t.x}" y="${t.y+5}" text-anchor="middle" font-size="12" font-weight="700" fill="#8a5d00">${d}</text>`}}}
+    const p1=g.pt(0,R),p2=g.pt(A,R);h+=`<path d="M220,250 L${p1.x},${p1.y} A${R},${R} 0 0 0 ${p2.x},${p2.y} Z" fill="#f7c873" stroke="#c97a2b" stroke-width="12" stroke-linejoin="round"/>`;
+    TOP.forEach(([f,r],k)=>{const p=g.pt(A*f,R*r);h+=`<circle cx="${p.x}" cy="${p.y}" r="${k%3?9:7}" fill="${k%2?'#c2410c':'#16a34a'}" opacity=".85"/>`});
+    h+=g.arc(0,z,60,C1,z+'°',{op:.22,tr:22})+g.arc(z,A,82,C2,(A-z)+'°',{op:.18,tr:22});
+    if(fold){const q1=g.pt(0,R),q2=g.pt(z,R);h+=`<path d="M220,250 L${q1.x},${q1.y} A${R},${R} 0 0 0 ${q2.x},${q2.y} Z" fill="#fde68a" fill-opacity=".75" stroke="#16a34a" stroke-width="3"><animateTransform attributeName="transform" type="rotate" from="0 220 250" to="${-z} 220 250" dur=".9s" fill="freeze"/></path>`}
+    h+=g.ray(0,R+8,INK,'x',{w:3})+g.ray(A,R+8,INK,'y',{w:3})+g.ray(z,R+14,ok?'#16a34a':'#0f172a','z',{w:5,dash:!ok})+g.dot();
+    sv.innerHTML=h;$('pz-a').textContent=z+'°';$('pz-b').textContent=(A-z)+'°'}
+  function setZ(v){if(ok)return;z=Math.max(0,Math.min(T[i],Math.round(v)));rg.value=z;draw()}
+  function load(){tries=0;ok=false;z=10;rg.max=T[i];rg.value=z;$('pz-q').innerHTML=`Miếng bánh có ∠xOy = ${T[i]}°. Kéo dao Oz để chia đôi cho hai bạn.`;msg('pz-f','');prog('pz',i,T.length,s);draw()}
+  rg.oninput=()=>setZ(+rg.value);$('pz-pro').onchange=()=>draw(false);
+  let drag=false;const ang=e=>{const pt=sv.createSVGPoint();pt.x=e.clientX;pt.y=e.clientY;const p=pt.matrixTransform(sv.getScreenCTM().inverse());let d=Math.atan2(250-p.y,p.x-220)*180/Math.PI;if(d<-90)d+=360;return d};
+  sv.addEventListener('pointerdown',e=>{drag=true;sv.setPointerCapture(e.pointerId);setZ(ang(e))});sv.addEventListener('pointermove',e=>{if(drag)setZ(ang(e))});sv.addEventListener('pointerup',()=>drag=false);
+  $('pz-ck').onclick=()=>{if(ok)return;const A=T[i];tries++;
+    if(z*2===A){ok=true;if(tries===1)s++;sfx.ok();confetti(40);draw(true);msg('pz-f',`✅ Tuyệt! ∠xOz = ∠zOy = ${A/2}° = ${A}° : 2. Gấp nửa bánh theo Oz: hai phần trùng khít, Oz là <b>tia phân giác</b> của ∠xOy.`,'ok');say('Hai bạn được phần bánh bằng nhau. Công bằng tuyệt đối! 🍰');prog('pz',i+1,T.length,s)}
+    else{sfx.bad();msg('pz-f',`Chưa đều: ∠xOz = ${z}°, ∠zOy = ${A-z}°. ${z*2<A?'Kéo dao xa Ox hơn một chút.':'Kéo dao về gần Ox hơn một chút.'}`+(tries>=2?` 💡 Mỗi phần phải bằng ${A}° : 2.`:''),'warn')}};
+  $('pz-nx').onclick=()=>{if(!ok&&tries===0){msg('pz-f','Em cắt thử trước đã nhé!','info');return}
+    if(i<T.length-1){i++;load()}else{const p=s>=4;msg('pz-f',p?'🎉 Em chia đều ngay '+s+'/5 miếng bánh!':'Em chia đều ngay '+s+'/5 miếng. Cần 4/5 để nhận huy hiệu, làm lại nhé!',p?'ok':'warn');if(p)award('pizza');else{i=0;s=0;setTimeout(load,1800)}}};
+  window.__pz={get A(){return T[i]},setZ};load()})();
+
+/* ---------- R3b CÁC BƯỚC VẼ + GẤP GIẤY ---------- */
+(function(){const R=[{t:'Sắp xếp các bước <b>vẽ tia phân giác bằng thước đo góc</b> (ví dụ ∠xOy = 64°). Bấm lần lượt theo đúng thứ tự.',s:['Đo góc xOy bằng thước đo góc, được ∠xOy = 64°.','Tính ∠xOz = 64° : 2 = 32°.','Đặt thước đo góc: tâm thước trùng đỉnh O, vạch 0° nằm trên cạnh Ox.','Đánh dấu điểm ở vạch 32°, vẽ tia Oz đi qua điểm đó.']},
+  {t:'Sắp xếp các bước <b>gấp giấy</b> để tìm tia phân giác của ∠xOy.',s:['Vẽ góc xOy lên một tờ giấy mỏng.','Gấp giấy sao cho cạnh Ox trùng với cạnh Oy.','Mở tờ giấy ra: nếp gấp chính là tia phân giác Oz.']}];
+  let r=0,pos=0,miss=0;
+  function load(){pos=0;$('fd-t').innerHTML=`Lượt ${r+1}/2 · `+R[r].t;msg('fd-f','');const box=$('fd-cards');box.innerHTML='';
+    shuffle(R[r].s.map((t,k)=>k)).forEach(k=>{const b=document.createElement('button');b.className='sc';b.innerHTML=`<b class="n">?</b><span>${R[r].s[k]}</span>`;b.onclick=()=>tap(b,k);box.appendChild(b)})}
+  function tap(b,k){if(b.classList.contains('done'))return;
+    if(k===pos){b.classList.add('done');b.querySelector('.n').textContent=pos+1;pos++;sfx.tap();
+      if(pos===R[r].s.length){sfx.ok();if(r===0){msg('fd-f','✅ Đúng thứ tự! Sang lượt 2: gấp giấy.','ok');setTimeout(()=>{r=1;load()},1500)}else{msg('fd-f','🎉 Em đã nắm cả hai cách vẽ tia phân giác bằng dụng cụ!','ok');award('fold');say('Giờ em thử gấp giấy thật xem nếp gấp có chia đôi góc không nhé!')}}}
+    else{miss++;sfx.bad();b.classList.add('shake');setTimeout(()=>b.classList.remove('shake'),400);msg('fd-f','Chưa đúng bước này. 💡 '+(r===0?'Phải biết số đo góc trước, rồi mới tính một nửa, sau đó mới đặt thước và vẽ.':'Phải có góc trên giấy trước, rồi mới gấp, cuối cùng mở ra.'),'warn')}}
+  /* mô phỏng gấp giấy */
+  const g=geo(80,210),A=70;
+  function paper(anim){const p1=g.pt(0,270),p2=g.pt(A,250),z=g.pt(A/2,280);let h=`<rect x="20" y="20" width="360" height="225" rx="6" fill="#fffdf6" stroke="#e5d6bd" stroke-width="2"/>`;
+    h+=g.ray(0,280,INK,'x',{w:3})+g.ray(A,230,INK,'',{w:3});
+    if(anim){const fp=g.pt(A,230),fz=g.pt(A/2,260);h+=`<g transform="translate(80,210) rotate(${-A/2})"><g><animateTransform attributeName="transform" type="scale" from="1 1" to="1 -1" dur="1.4s" fill="freeze"/><g transform="rotate(${A/2}) translate(-80,-210)">
+      <path d="M80,210 L${fp.x},${fp.y} L${fz.x},${fz.y} Z" fill="#dbeafe" fill-opacity=".85" stroke="${C1}" stroke-width="2"/><line x1="80" y1="210" x2="${fp.x}" y2="${fp.y}" stroke="${C1}" stroke-width="4"/></g></g></g>`;
+      h+=`<line x1="80" y1="210" x2="${z.x}" y2="${z.y}" stroke="${C2}" stroke-width="3" stroke-dasharray="8 6" opacity="0"><animate attributeName="opacity" from="0" to="1" begin="1.3s" dur=".4s" fill="freeze"/></line>`;
+      h+=`<text x="${z.x+6}" y="${z.y}" font-size="18" font-weight="800" fill="${C2}" opacity="0">z<animate attributeName="opacity" from="0" to="1" begin="1.3s" dur=".4s" fill="freeze"/></text>`}
+    const yl=g.pt(A,250);h+=`<text x="${yl.x}" y="${yl.y}" font-size="19" font-weight="800" fill="${INK}">y</text>`+g.dot();$('fd-svg').innerHTML=h}
+  $('fd-play').onclick=()=>{paper(false);setTimeout(()=>paper(true),60);sfx.tap()};paper(false);
+  window.__fd={get pos(){return pos},get r(){return r}};load()})();
+
+/* ---------- R4 BẢN THIẾT KẾ ---------- */
+(function(){const g=geo(220,190),W='#e0ecff',Y='#fde047',P='#f9a8d4';
+  const T=[{r:[[0,'x'],[50,'y'],[180,"x'"],[230,"y'"]],m:[[0,50,'50°']],q:"Hai đường thẳng xx' và yy' cắt nhau tại O, ∠xOy = 50°. Tính số đo góc lớn nhất trong bốn góc tạo thành.",a:130,h:'Góc kề bù với ∠xOy bằng bao nhiêu? Góc đó lớn hơn hay nhỏ hơn 50°?'},
+   {r:[[0,'x'],[120,'y'],[60,'z',1]],m:[[0,120,'120°']],q:'∠xOy = 120°, Oz là tia phân giác của ∠xOy. Tính ∠xOz.',a:60,h:'Tia phân giác chia góc thành hai góc bằng nhau.'},
+   {r:[[0,'x'],[135,'y'],[180,"x'"]],m:[],q:"∠xOy và ∠yOx' là hai góc kề bù, ∠xOy = 3 · ∠yOx'. Tính ∠yOx'.",a:45,h:'Tổng hai góc là 180°, gồm 3 phần + 1 phần = 4 phần bằng nhau.'},
+   {r:[[0,'x'],[70,'y'],[180,"x'"],[250,"y'"],[35,'t',1]],m:[[0,70,'70°']],q:"xx' cắt yy' tại O, ∠xOy = 70°. Ot là tia phân giác của ∠xOy. Tính ∠tOx'.",a:145,h:"Tính ∠xOt trước; ∠xOt và ∠tOx' là hai góc kề bù."},
+   {r:[[0,'x'],[110,'y'],[180,"x'"]],m:[],q:"Hai góc kề bù xOy và yOx' có ∠xOy − ∠yOx' = 40°. Tính ∠xOy.",a:110,h:'Tổng 180°, hiệu 40°: góc lớn = (tổng + hiệu) : 2.'},
+   {r:[[0,'x'],[140,'y'],[70,'z',1],[35,'t',1]],m:[[0,140,'140°']],q:'∠xOy = 140°, Oz là tia phân giác của ∠xOy, Ot là tia phân giác của ∠xOz. Tính ∠tOy.',a:105,h:'Tính lần lượt ∠xOz, rồi ∠xOt; sau đó ∠tOy = ∠xOy − ∠xOt.'}];
+  let i=0,s=0,tries=0,ok=false;
+  function draw(){const it=T[i];let h=`<defs><pattern id="bpg" width="20" height="20" patternUnits="userSpaceOnUse"><path d="M20 0H0V20" fill="none" stroke="#2b4c9b" stroke-width="1"/></pattern></defs><rect width="440" height="300" fill="#16337a"/><rect width="440" height="300" fill="url(#bpg)"/>`;
+    it.m.forEach(([u,v,t])=>h+=g.arc(u,v,44,Y,t,{op:.18,tr:22,tc:Y}));
+    it.r.forEach(([d,l,dash])=>h+=g.ray(d,118,dash?P:W,l,{w:dash?3:3,dash}));h+=`<circle cx="220" cy="190" r="5" fill="#fff"/><text x="208" y="214" font-size="16" font-weight="800" fill="#fff">O</text>`;
+    h+=`<text x="430" y="290" text-anchor="end" font-size="11" fill="#9db7f0" font-family="JetBrains Mono,monospace">BẢN VẼ SỐ ${i+1} · KHÔNG THEO TỈ LỆ</text>`;$('pl-svg').innerHTML=h}
+  function load(){tries=0;ok=false;$('pl-q').innerHTML=T[i].q;$('pl-in').value='';msg('pl-f','');prog('pl',i,T.length,s);draw()}
+  $('pl-h').onclick=()=>{msg('pl-f','💡 '+T[i].h,'info');say('Gợi ý chỉ chỉ đường thôi, em tự đi tiếp nhé!')};
+  $('pl-ck').onclick=()=>{if(ok)return;const v=parseInt($('pl-in').value);if(isNaN(v)){msg('pl-f','Em nhập đáp số nhé!','info');return}tries++;
+    if(v===T[i].a){ok=true;if(tries===1)s++;sfx.ok();confetti(40);msg('pl-f',`✅ Chính xác: ${T[i].a}°. Bản vẽ số ${i+1} được duyệt!`,'ok');say('Bản vẽ đạt chuẩn! 📐');prog('pl',i+1,T.length,s)}
+    else{sfx.bad();msg('pl-f','Chưa đúng. 💡 '+T[i].h,'warn')}};
+  $('pl-in').addEventListener('keydown',e=>{if(e.key==='Enter')$('pl-ck').click()});
+  $('pl-nx').onclick=()=>{if(!ok&&tries===0){msg('pl-f','Em nhập đáp số trước nhé!','info');return}
+    if(i<T.length-1){i++;load()}else{const p=s>=4;msg('pl-f',p?'🎉 Em hoàn thành đúng ngay '+s+'/6 bản vẽ!':'Em đúng ngay '+s+'/6 bản vẽ. Cần 4/6 để nhận huy hiệu, làm lại nhé!',p?'ok':'warn');if(p)award('plan');else{i=0;s=0;setTimeout(load,1800)}}};
+  window.__pl={get a(){return T[i].a}};load()})();
+
+boot();
+</script>
+<!-- ===== TRỢ GIẢNG AI – CÔNG TRƯỜNG KIẾN TRÚC SƯ GÓC (dán ngay TRƯỚC thẻ </body> trong index.html) ===== -->
+<style>
+#tgai-btn{position:fixed;right:18px;bottom:18px;z-index:99999;display:flex;align-items:center;gap:8px;padding:12px 18px;border:none;border-radius:999px;background:linear-gradient(135deg,#2dd4bf,#0ea5e9);color:#04221f;font:700 15px/1 'Be Vietnam Pro',system-ui,sans-serif;cursor:pointer;box-shadow:0 8px 24px rgba(45,212,191,.35)}
+#tgai-btn:hover{transform:translateY(-2px)}
+#tgai-box{position:fixed;right:18px;bottom:78px;z-index:99999;width:370px;max-width:calc(100vw - 32px);height:520px;max-height:calc(100vh - 110px);display:none;flex-direction:column;background:#0b1f24;border:1px solid #1f4a4f;border-radius:20px;box-shadow:0 18px 50px rgba(0,0,0,.5);font-family:'Be Vietnam Pro',system-ui,sans-serif;color:#e6fffb;overflow:hidden}
+#tgai-box.open{display:flex}
+#tgai-head{display:flex;align-items:center;justify-content:space-between;padding:12px 14px;background:#0f2c32;border-bottom:1px solid #1f4a4f}
+#tgai-head b{font-size:15px}
+#tgai-head small{display:block;font-size:12px;color:#8fbfba;font-weight:400}
+#tgai-x{background:none;border:none;color:#8fbfba;font-size:22px;cursor:pointer}
+#tgai-log{flex:1;overflow-y:auto;padding:12px;display:flex;flex-direction:column;gap:8px}
+.tgai-b{padding:9px 12px;border-radius:14px;font-size:14px;line-height:1.5;max-width:88%;white-space:pre-wrap}
+.tgai-a{align-self:flex-start;background:#133a40;border-bottom-left-radius:4px}
+.tgai-u{align-self:flex-end;background:#2dd4bf;color:#04221f;border-bottom-right-radius:4px}
+#tgai-chips{display:flex;gap:6px;flex-wrap:wrap;padding:0 12px 8px}
+.tgai-c{border:1px solid #1f4a4f;background:transparent;color:#bdf5ec;border-radius:999px;padding:5px 10px;font:13px 'Be Vietnam Pro',system-ui,sans-serif;cursor:pointer}
+#tgai-f{display:flex;gap:8px;padding:10px 12px;border-top:1px solid #1f4a4f}
+#tgai-q{flex:1;min-width:0;background:#0f2c32;border:1px solid #1f4a4f;border-radius:12px;padding:10px;color:#e6fffb;font:15px 'Be Vietnam Pro',system-ui,sans-serif}
+#tgai-send{border:none;border-radius:12px;padding:0 14px;background:#2dd4bf;color:#04221f;font-weight:700;cursor:pointer}
+#tgai-rule{font-size:11.5px;color:#8fbfba;padding:0 12px 10px}
+@media(max-width:600px){#tgai-btn .tgai-t{display:none}#tgai-btn{padding:14px;font-size:22px}}
+/* Khi trang được nhúng (Google Site): nút thành thanh ở đầu trang, khung chat mở ngay bên dưới */
+.tgai-embed #tgai-btn{position:relative;right:auto;bottom:auto;width:calc(100% - 24px);margin:10px 12px 0;justify-content:center;padding:12px 18px;font-size:15px}
+.tgai-embed #tgai-btn .tgai-t{display:inline}
+.tgai-embed #tgai-box{position:absolute;top:66px;bottom:auto;right:12px;height:500px;max-height:none}
+</style>
+
+<button id="tgai-btn" aria-label="Mở trợ giảng AI">🤖<span class="tgai-t"> Hỏi trợ giảng AI</span></button>
+<div id="tgai-box" role="dialog" aria-label="Trợ giảng AI">
+  <div id="tgai-head"><div><b>🤖 Trợ giảng AI</b><small>Toán 7 · Bài 8: Góc ở vị trí đặc biệt. Tia phân giác của một góc</small></div><button id="tgai-x" aria-label="Đóng">×</button></div>
+  <div id="tgai-log"><div class="tgai-b tgai-a">Chào em! Mình là trợ giảng AI của Công trường Kiến trúc sư góc. Em bí ở đâu cứ hỏi, mình sẽ gợi ý để em tự tìm ra đáp án nhé 😊</div></div>
+  <div id="tgai-chips">
+    <button class="tgai-c">Hai góc kề bù là gì?</button>
+    <button class="tgai-c">Vì sao hai góc đối đỉnh bằng nhau?</button>
+    <button class="tgai-c">Gợi ý cho câu em đang làm</button>
+  </div>
+  <div id="tgai-f"><input id="tgai-q" maxlength="300" placeholder="Nhập câu hỏi của em…"><button id="tgai-send">Gửi</button></div>
+  <div id="tgai-rule">🛡️ Hỏi để hiểu, không hỏi để chép · Không ghi thông tin cá nhân · AI có thể sai, hãy kiểm tra với SGK và thầy cô.</div>
+</div>
+
+<script>
+(function(){
+  // Đang nằm trong khung nhúng (Google Site)? -> đưa nút lên đầu trang để luôn nhìn thấy
+  var inFrame=false;try{inFrame=window.self!==window.top}catch(e){inFrame=true}
+  if(inFrame){document.documentElement.classList.add('tgai-embed');var bt=document.getElementById('tgai-btn');document.body.insertBefore(bt,document.body.firstChild);document.body.style.position='relative';document.body.appendChild(document.getElementById('tgai-box'))}
+  var box=document.getElementById('tgai-box'),log=document.getElementById('tgai-log'),inp=document.getElementById('tgai-q'),hist=[],busy=false;
+  document.getElementById('tgai-btn').onclick=function(){box.classList.toggle('open');if(box.classList.contains('open'))inp.focus()};
+  document.getElementById('tgai-x').onclick=function(){box.classList.remove('open')};
+  function add(t,who){var d=document.createElement('div');d.className='tgai-b '+who;d.textContent=t;log.appendChild(d);log.scrollTop=log.scrollHeight;return d}
+  function where(){
+    var v=[].slice.call(document.querySelectorAll('.view')).find(function(e){return !e.hidden}),t=v?v.innerText.replace(/\s+/g,' ').slice(0,320):'';
+    return 'Học sinh đang dùng học liệu "Công trường Kiến trúc sư góc" (Toán 7, Bài 8: Góc ở vị trí đặc biệt. Tia phân giác của một góc). Phần đang xem: "'+t+'". KHÔNG nói ra đáp án của câu đang làm, chỉ gợi ý cách nghĩ.';
+  }
+  async function ask(text){
+    var q=(text||inp.value).trim(); if(!q||busy)return; inp.value=''; busy=true;
+    add(q,'tgai-u'); var w=add('Trợ giảng đang suy nghĩ…','tgai-a');
+    try{
+      var r=await fetch('/api/chat',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({question:q,context:where(),history:hist.slice(-6)})});
+      var j=await r.json(); if(!r.ok||!j.reply)throw 0;
+      w.textContent=j.reply; hist.push({role:'user',text:q},{role:'ai',text:j.reply});
+    }catch(e){w.textContent='Trợ giảng AI đang tạm nghỉ. Em thử lại sau hoặc hỏi thầy cô nhé!'}
+    busy=false;
+  }
+  document.getElementById('tgai-send').onclick=function(){ask()};
+  inp.addEventListener('keydown',function(e){if(e.key==='Enter')ask()});
+  document.querySelectorAll('.tgai-c').forEach(function(b){b.onclick=function(){ask(b.textContent)}});
+})();
+</script>
+<!-- ===== HẾT ĐOẠN TRỢ GIẢNG AI ===== -->
+
+<!-- Vercel Web Analytics -->
+<script>window.va = window.va || function () { (window.vaq = window.vaq || []).push(arguments); };</script>
+<script defer src="/_vercel/insights/script.js"></script>
+</body>
+</html>
